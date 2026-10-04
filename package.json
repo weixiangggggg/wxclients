@@ -1,0 +1,12 @@
+{
+  "name": "wxclients",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "vite --host 0.0.0.0",
+    "test": "node test.cjs"
+  },
+  "devDependencies": {
+    "vite": "^8.3.2"
+  }
+}
