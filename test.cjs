@@ -5,7 +5,7 @@ for(const annual of [-20,0,4,20]){let balance=10000;const monthly=Math.pow(1+ann
 const base={age:50,retire:65,end:90,spend:3000,saved:100000,monthly:500,income:1500,inflation:0,pre:0,post:0};let r=retirement(base);near(r.capital,450000);near(r.projected,190000);near(r.extra,260000/180);
 near(retirement({...base,income:4000}).capital,0);
 assert.equal(retirement({...base,age:65}).extra,null);
-assert.equal(retirement({...base,income:base.spend*0.5}).gap,1500);
+assert.equal(retirement({...base,spend:base.spend*0.5,income:0}).gap,1500);near(retirement({...base,spend:base.spend*0.5,income:0,inflation:3}).gap,1500*Math.pow(1.03,15));
 near(retirement({...base,income:base.spend*0.5*Math.pow(1.03,15),inflation:3}).gap,1500*Math.pow(1.03,15));
 r=retirement({...base,inflation:2.5,pre:4,post:3});let balance=r.capital;const real=Math.pow(1.03/1.025,1/12)-1;for(let n=0;n<300;n++)balance=balance*(1+real)-r.gap;assert.ok(Math.abs(balance)<1e-5);near(future(base.saved,base.monthly+r.extra,15,4),r.capital);
 assert.ok(retirement({...base,post:-5}).capital>450000);
