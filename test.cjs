@@ -7,5 +7,5 @@ near(retirement({...base,income:4000}).capital,0);
 assert.equal(retirement({...base,age:65}).extra,null);
 r=retirement({...base,inflation:2.5,pre:4,post:3});let balance=r.capital;const real=Math.pow(1.03/1.025,1/12)-1;for(let n=0;n<300;n++)balance=balance*(1+real)-r.gap;assert.ok(Math.abs(balance)<1e-5);near(future(base.saved,base.monthly+r.extra,15,4),r.capital);
 assert.ok(retirement({...base,post:-5}).capital>450000);
-const goalPayment=monthlyContribution(500000,25000,30*12,8);near(future(25000,goalPayment,30,8),500000);near(monthlyContribution(12000,0,12,0),1000);assert.equal(monthlyContribution(100000,100000,120,8),0);assert.equal(monthlyContribution(1000,0,0,8),null);
+const goalPayment=monthlyContribution(500000,25000,30*12,8);near(future(25000,goalPayment,30,8),500000);near(monthlyContribution(12000,0,12,0),1000);assert.equal(monthlyContribution(100000,100000,120,8),0);assert.equal(monthlyContribution(1000,0,0,8),null);near(monthlyContribution(120000,0,120,0),1000);near(25000+monthlyContribution(500000,25000,30*12,0)*30*12,500000);
 console.log('PASS: zero, positive and negative returns; independent monthly simulation; retirement drawdown; income coverage; retirement-now boundary; shortfall contributions; target contribution solver.');
